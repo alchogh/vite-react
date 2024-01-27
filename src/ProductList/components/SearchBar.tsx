@@ -7,7 +7,6 @@ interface IProps {
 export const SearchBar = ({ onSubmit }: IProps) => {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(123);
   };
 
   const handleClick = () => {

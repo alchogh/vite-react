@@ -13,7 +13,6 @@ export const Product = () => {
   const handleSumbits = async (term: string) => {
     const results = await searchImages(term);
     setGetData(results);
-    console.log(getData);
   };
 
   const handleSumbit = (term: string) => {
