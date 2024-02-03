@@ -1,31 +1,33 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { SearchBar } from "./components/SearchBar";
+import { ImagesList } from "./components/ImagesList";
 import searchImages from "@/api/getApi";
 
-interface Props {
-  id: string;
-  slug: string;
+export interface UrlProps {
+  full: string;
+  raw: string;
+  regular: string;
+  small: string;
+  small_s3: string;
+  thumb: string;
+}
+export interface ImageProps {
+  alt_description: string;
+  urls: UrlProps;
 }
 
 export const Product = () => {
-  const [getData, setGetData] = useState([]);
+  const [images, setImages] = useState<ImageProps[]>([]);
 
-  const handleSumbits = async (term: string) => {
-    const results = await searchImages(term);
-    setGetData(results);
-  };
-
-  const handleSumbit = (term: string) => {
-    searchImages(term);
+  const handleSumbit = async (term: string) => {
+    const result = await searchImages(term);
+    setImages(result);
   };
 
   return (
     <div>
-      <button onClick={() => handleSumbits("car")}>Show Data</button>
-      {getData.map((data: Props, index: number) => {
-        return <div key={index}>{data.id} </div>;
-      })}
       <SearchBar onSubmit={handleSumbit} />
+      <ImagesList images={images} />
     </div>
   );
 };
