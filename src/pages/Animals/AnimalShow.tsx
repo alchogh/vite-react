@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { styled } from "styled-components";
-import Icon from "./components/Icons/Icon";
+import Icon from "../../components/Icons/Icon";
 
 interface AnimalShowProps {
   type: string;
