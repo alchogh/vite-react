@@ -4,6 +4,8 @@
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
+    // env설정떔에 넣어줌
+    "types": ["vite/client"],
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
