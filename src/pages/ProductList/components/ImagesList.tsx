@@ -1,6 +1,6 @@
 import { ImageShow } from "./ImageShow";
-import { styled } from "styled-components";
 import { ImageProps } from "../Product";
+import styled from "styled-components";
 
 interface ImagesListProps {
   images: ImageProps[];

@@ -1,5 +1,5 @@
-import { styled } from "styled-components";
 import { inconList } from "./IconList";
+import styled from "styled-components";
 
 interface Props {
   name: string;

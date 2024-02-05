@@ -1,5 +1,5 @@
-import { styled } from "styled-components";
 import { ImageProps } from "../Product";
+import styled from "styled-components";
 
 export const ImageShow = ({ image }: { image: ImageProps }) => {
   console.log(image);

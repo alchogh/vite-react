@@ -1,13 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
-import { Product } from "./ProductList/Product";
-import { ProfiledCard } from "./ProfiledCard";
+import { Book } from "./pages/Books/Book";
+import { Product } from "./pages/ProductList/Product";
+
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/abc" element={<ProfiledCard />} />
+        <Route path="/book" element={<Book />} />
         <Route path="/section-5" element={<Product />} />
       </Routes>
     </BrowserRouter>

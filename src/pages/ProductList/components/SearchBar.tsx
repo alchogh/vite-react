@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 interface IProps {
   onSubmit: (value: string) => void;
