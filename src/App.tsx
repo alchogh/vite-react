@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { styled } from "styled-components";
 import { AnimalShow } from "./pages/Animals/AnimalShow";
+import styled from "styled-components";
 
 function App() {
   const [id, setId] = useState("");

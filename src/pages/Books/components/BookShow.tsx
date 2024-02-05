@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Book } from "../Book";
 import { BookEdit } from "./BookEdit";
-import { styled } from "styled-components";
+import styled from "styled-components";
 interface BookShowProps {
   books: Book[];
   book: Book;
