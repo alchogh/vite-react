@@ -6,10 +6,17 @@ interface BookShowProps {
   books: Book[];
   book: Book;
   setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
+  editBookById: (id: number, newTitle: string) => void;
 }
 
-export const BookShow = ({ book, setBooks, books }: BookShowProps) => {
+export const BookShow = ({
+  book,
+  setBooks,
+  books,
+  editBookById,
+}: BookShowProps) => {
   const [showEdit, setShowEdit] = useState(false);
+
   const deleteList = (id: number) => {
     const filterList = books.filter((v: Book) => v.id !== id);
     return setBooks(filterList);
@@ -23,12 +30,16 @@ export const BookShow = ({ book, setBooks, books }: BookShowProps) => {
     setShowEdit(!showEdit);
   };
 
+  const handleEditSubmit = (id: number, newTitle: string) => {
+    setShowEdit(false);
+    editBookById(id, newTitle);
+  };
+
   let content = <h3>{book.title}</h3>;
   if (showEdit) {
-    content = <BookEdit />;
+    content = <BookEdit book={book} handleEditSubmit={handleEditSubmit} />;
   }
 
-  console.log(showEdit);
   return (
     <Container>
       <div>{content}</div>
