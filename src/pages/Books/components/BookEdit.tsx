@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Book } from "../Book";
+import styled from "styled-components";
 
 interface EditProps {
   book: Book;
-  setShowEdit: (boolean: boolean) => void;
-  editBookById: (id: number, newTitle: string) => void;
+
+  handleEditSubmit: (id: number, newTitle: string) => void;
 }
 
-export const BookEdit = ({ book, setShowEdit, editBookById }: EditProps) => {
+export const BookEdit = ({ book, handleEditSubmit }: EditProps) => {
   const [title, setTitle] = useState(book.title);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,16 +16,37 @@ export const BookEdit = ({ book, setShowEdit, editBookById }: EditProps) => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    editBookById(book.id, title);
-    setShowEdit(false);
     e.preventDefault();
+    handleEditSubmit(book.id, title);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Title</label>
-      <input value={title} onChange={handleChange} />
-      <button type="submit">Save</button>
-    </form>
+    <FormContainer onSubmit={handleSubmit}>
+      <LabelTitle>Title</LabelTitle>
+      <FormInput value={title} onChange={handleChange} />
+      <FormButton type="submit">Save</FormButton>
+    </FormContainer>
   );
 };
+
+const FormContainer = styled.form`
+  display: flex;
+  /* flex-direction: column; */
+`;
+
+const LabelTitle = styled.label`
+  font-size: 20px;
+  font-weight: 700;
+`;
+
+const FormInput = styled.input`
+  border: none;
+  border-bottom: 1px solid black;
+  background-color: inherit;
+`;
+
+const FormButton = styled.button`
+  margin-left: 20px;
+  background-color: inherit;
+  border: none;
+`;

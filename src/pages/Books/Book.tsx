@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { BookCreate } from "./components/BookCreate";
 import { BookList } from "./components/BookList";
+import styled from "styled-components";
 
 export interface Book {
   id: number;
@@ -30,7 +31,13 @@ export const Book = () => {
   return (
     <div>
       <BookCreate onSubmit={onSubmit} />
+      <BookListTitle>books List</BookListTitle>
       <BookList books={books} setBooks={setBooks} editBookById={editBookById} />
     </div>
   );
 };
+
+const BookListTitle = styled.h2`
+  font-size: 30px;
+  padding: 10px;
+`;

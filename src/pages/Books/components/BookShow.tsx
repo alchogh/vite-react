@@ -30,15 +30,14 @@ export const BookShow = ({
     setShowEdit(!showEdit);
   };
 
-  let content: any = <h3>{book.title}</h3>;
+  const handleEditSubmit = (id: number, newTitle: string) => {
+    setShowEdit(false);
+    editBookById(id, newTitle);
+  };
+
+  let content = <h3>{book.title}</h3>;
   if (showEdit) {
-    content = (
-      <BookEdit
-        book={book}
-        setShowEdit={setShowEdit}
-        editBookById={editBookById}
-      />
-    );
+    content = <BookEdit book={book} handleEditSubmit={handleEditSubmit} />;
   }
 
   return (
