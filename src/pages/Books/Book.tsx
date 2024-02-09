@@ -10,6 +10,15 @@ export interface Book {
 export const Book = () => {
   const [books, setBooks] = useState<Book[]>([]);
 
+  const editBookById = (id: number, newTitle: string) => {
+    const updatedBooks = books.map((book) => {
+      if (book.id === id) return { ...book, title: newTitle };
+      return book;
+    });
+
+    setBooks(updatedBooks);
+  };
+
   const onSubmit = (title: string) => {
     const updatedBooks = [
       ...books,
@@ -21,7 +30,7 @@ export const Book = () => {
   return (
     <div>
       <BookCreate onSubmit={onSubmit} />
-      <BookList books={books} setBooks={setBooks} />
+      <BookList books={books} setBooks={setBooks} editBookById={editBookById} />
     </div>
   );
 };
