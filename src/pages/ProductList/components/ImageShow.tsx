@@ -2,7 +2,6 @@ import { ImageProps } from "../Product";
 import styled from "styled-components";
 
 export const ImageShow = ({ image }: { image: ImageProps }) => {
-  console.log(image);
   return (
     <>
       <Image src={image.urls.small} alt={image.alt_description} />

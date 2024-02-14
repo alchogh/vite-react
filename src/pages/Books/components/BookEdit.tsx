@@ -1,23 +1,24 @@
 import { useState } from "react";
-import { Book } from "../Book";
+import useBooksContext from "@/hooks/useBooksContext";
+import { Book } from "@/context/books";
 import styled from "styled-components";
 
 interface EditProps {
   book: Book;
-
-  handleEditSubmit: (id: number, newTitle: string) => void;
+  handleEditSubmit: () => void;
 }
 
 export const BookEdit = ({ book, handleEditSubmit }: EditProps) => {
   const [title, setTitle] = useState(book.title);
-
+  const { editBookById } = useBooksContext();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    handleEditSubmit(book.id, title);
+    handleEditSubmit();
+    editBookById(book.id, title);
   };
 
   return (

@@ -1,25 +1,13 @@
+import useBooksContext from "@/hooks/useBooksContext";
 import { BookShow } from "./BookShow";
-import { Book } from "../Book";
+import { Book } from "@/context/books";
 
-export interface BookListProps {
-  books: Book[];
-  setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
-  editBookById: (id: number, newTitle: string) => void;
-}
-
-export const BookList = ({ books, setBooks, editBookById }: BookListProps) => {
+export const BookList = () => {
+  const { books } = useBooksContext();
   return (
     <div>
-      {books.map((book) => {
-        return (
-          <BookShow
-            key={book.id}
-            book={book}
-            setBooks={setBooks}
-            books={books}
-            editBookById={editBookById}
-          />
-        );
+      {books.map((book: Book) => {
+        return <BookShow key={book.id} book={book} />;
       })}
     </div>
   );

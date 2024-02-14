@@ -1,24 +1,15 @@
 import { useState } from "react";
-import { Book } from "../Book";
+import useBooksContext from "@/hooks/useBooksContext";
+
 import { BookEdit } from "./BookEdit";
 import styled from "styled-components";
-interface BookShowProps {
-  books: Book[];
-  book: Book;
-  setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
-  editBookById: (id: number, newTitle: string) => void;
-}
 
-export const BookShow = ({
-  book,
-  setBooks,
-  books,
-  editBookById,
-}: BookShowProps) => {
+export const BookShow = ({ book }: any) => {
+  const { books, setBooks } = useBooksContext();
   const [showEdit, setShowEdit] = useState(false);
 
   const deleteList = (id: number) => {
-    const filterList = books.filter((v: Book) => v.id !== id);
+    const filterList = books.filter((v: any) => v.id !== id);
     return setBooks(filterList);
   };
 
@@ -30,9 +21,8 @@ export const BookShow = ({
     setShowEdit(!showEdit);
   };
 
-  const handleEditSubmit = (id: number, newTitle: string) => {
+  const handleEditSubmit = () => {
     setShowEdit(false);
-    editBookById(id, newTitle);
   };
 
   let content = <h3>{book.title}</h3>;
