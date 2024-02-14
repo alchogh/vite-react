@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
-import BooksContext from "@/context/books";
+import { useState } from "react";
+import useBooksContext from "@/hooks/useBooksContext";
 
 import { BookEdit } from "./BookEdit";
 import styled from "styled-components";
 
 export const BookShow = ({ book }: any) => {
-  const { books, setBooks } = useContext(BooksContext);
+  const { books, setBooks } = useBooksContext();
   const [showEdit, setShowEdit] = useState(false);
 
   const deleteList = (id: number) => {
