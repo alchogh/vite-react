@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import BooksContext from "@/context/books";
+
 import { BookEdit } from "./BookEdit";
-import { Book } from "@/context/books";
 import styled from "styled-components";
 
 export const BookShow = ({ book }: any) => {
-  const { books, setBooks, editBookById } = useContext(BooksContext);
+  const { books, setBooks } = useContext(BooksContext);
   const [showEdit, setShowEdit] = useState(false);
 
   const deleteList = (id: number) => {
@@ -21,9 +21,8 @@ export const BookShow = ({ book }: any) => {
     setShowEdit(!showEdit);
   };
 
-  const handleEditSubmit = (id: number, newTitle: string) => {
+  const handleEditSubmit = () => {
     setShowEdit(false);
-    editBookById(id, newTitle);
   };
 
   let content = <h3>{book.title}</h3>;

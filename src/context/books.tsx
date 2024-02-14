@@ -11,7 +11,7 @@ export interface BookListProps {
   editBookById: (id: number, newTitle: string) => void;
 }
 
-const BooksContext = createContext<any>(0);
+const BooksContext = createContext<any>(null);
 
 function Provider({ children }: { children: React.ReactNode }) {
   const [books, setBooks] = useState<Book[]>([]);
