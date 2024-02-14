@@ -5,13 +5,20 @@ export interface Book {
   title: string;
 }
 
+interface BooksContextType {
+  books: Book[];
+  setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
+  editBookById: (id: number, newTitle: string) => void;
+  onSubmit: (title: string) => void;
+}
+
 export interface BookListProps {
   books: Book[];
   setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
   editBookById: (id: number, newTitle: string) => void;
 }
 
-const BooksContext = createContext<any>(null);
+const BooksContext = createContext<BooksContextType | undefined>(undefined);
 
 function Provider({ children }: { children: React.ReactNode }) {
   const [books, setBooks] = useState<Book[]>([]);

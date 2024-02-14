@@ -2,5 +2,9 @@ import { useContext } from "react";
 import BooksContext from "@/context/books";
 
 export default function useBooksContext() {
-  return useContext(BooksContext);
+  const context = useContext(BooksContext);
+  if (!context) {
+    throw new Error("error");
+  }
+  return context;
 }
