@@ -1,13 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
+import BooksContext from "@/context/books";
 
-interface OnSubmitProps {
-  onSubmit: (title: string) => void;
-}
-
-export const BookCreate = ({ onSubmit }: OnSubmitProps) => {
+export const BookCreate = () => {
   const [title, setTitle] = useState("");
-
+  const { onSubmit } = useContext(BooksContext);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
