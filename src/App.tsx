@@ -1,34 +1,19 @@
 import React, { useState } from "react";
-import { AnimalShow } from "./pages/Animals/AnimalShow";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function App() {
-  const [id, setId] = useState("");
-  const [animals, setAnimals] = useState<string[]>([]);
-
-  const handleId = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setId(e.target.value);
+  const [isOpen, setIsOpen] = useState(false);
+  const handleDropDown = () => {
+    setIsOpen((prev) => !prev);
   };
-
-  const getRandomAnimal = () => {
-    const animals = ["bird", "cat", "cow", "dog", "gator", "horse"];
-    return animals[Math.floor(Math.random() * animals.length)];
-  };
-
-  const showAnimalsRandom = () => {
-    animals.push(getRandomAnimal());
-    setAnimals([...animals, getRandomAnimal()]);
-  };
-
   return (
     <Container>
-      <div>Personal Digital Assistant</div>
-      <Input value={id} onChange={handleId} />
-
-      <Button onClick={showAnimalsRandom}> Button</Button>
-      {animals.map((animal: string, index: number) => {
-        return <AnimalShow type={animal} key={index + 1} />;
-      })}
+      <DropDownContainer onClick={handleDropDown}>Click here</DropDownContainer>
+      {isOpen &&
+        DROPDOWN_LIST.map((list) => {
+          return <LinkContainer to={list.link}>{list.title}</LinkContainer>;
+        })}
     </Container>
   );
 }
@@ -37,21 +22,31 @@ export default App;
 
 const Container = styled.div`
   display: flex;
+  font-size: 40px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-const Input = styled.input`
+const DropDownContainer = styled.div`
   border-radius: 12px;
   padding: 20px;
 `;
 
-const Button = styled.button`
-  background-color: lightgreen;
+const LinkContainer = styled(Link)`
+  background-color: lightblue;
   border-radius: 3px;
-  border: 1px solid green;
+  border: none;
   font-size: 20px;
+  color: black;
+  text-decoration: none;
+  text-align: center;
   padding: 10px;
   width: 30%;
 `;
+
+const DROPDOWN_LIST = [
+  { id: 1, title: "bookList", link: "book" },
+  { id: 2, title: "reducer", link: "reducer" },
+  { id: 3, title: "redux", link: "redux" },
+];
